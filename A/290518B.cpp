@@ -2,16 +2,14 @@
 using namespace std;
 
 int main() {
-int main() {
-  	long long x, y;
-  	cin >> x >> y;
-
-	if(x == y) cout << "=" << endl;
-	else if(x == 1) cout << "<" << endl;
-	else if (y == 1) cout << ">" << endl;
-	else {
-		if(x > y) cout << "<" << endl;
-		else if(x < y) cout << ">" << endl;
+	int x, y;
+	cin >> x >> y;
+	if (x == y) {
+		cout << "=" << endl;
+	}else {
+		double lx = log10(x); double ly = log10(y);
+		if (lx * y < ly * x) cout << "<" << endl;
+		else if (lx * y > ly * x) cout << ">" << endl;
+		else cout << "=" << endl;
 	}
-  	  	
 }
