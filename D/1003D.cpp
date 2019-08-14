@@ -34,9 +34,9 @@ void insertionSort(std::vector<int> &vec) {
 }
 
 void invert(std::vector<int> &vec) {
-	for(int ii = 0; ii < (int)(vec.size()/2); ++ii) {
-		swap(vec, ii, vec.size() - ii - 1);
-	}
+    for(int ii = 0; ii < (int)(vec.size()/2); ++ii) {
+        swap(vec, ii, vec.size() - ii - 1);
+    }
 }
 
 int binaryPosition(int n) {
@@ -53,19 +53,19 @@ int binaryPosition(int n) {
 }
 
 int main() {
-	int n, q;
-	std::cin >> n >> q;
-	std::vector<int> V(31);
+    int n, q;
+    std::cin >> n >> q;
+    std::vector<int> V(31);
 
-	for(int ii = 0; ii < n; ii++) {
+    for(int ii = 0; ii < n; ii++) {
         int x;
-		std::cin >> x;
+        std::cin >> x;
         V[binaryPosition(x)]++; // store the 2power.
-	}
+    }
 
-	int res = -1;
-	for(int ii = 0; ii < q; ++ii) {
-		std::cin >> n;
+    int res = -1;
+    for(int ii = 0; ii < q; ++ii) {
+        std::cin >> n;
         res = 0;
         for(int jj = V.size()-1; jj >= 0 && n > 0; --jj) {
             int times = n / (1 << jj); // how many are needed
@@ -74,10 +74,11 @@ int main() {
             }
             res += times;
             n -= (1 << jj) * times; // pow2
-        }			
+        }
+        
         if(n > 0) {
             res = -1;
         }		
-		std::cout << res << std::endl;
-	}
+        std::cout << res << std::endl;
+    }
 }
