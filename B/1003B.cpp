@@ -1,4 +1,4 @@
-// #494 Div. 3
+// #494 Div. 3 
 // B 1000
 // constructive algorithms
 
