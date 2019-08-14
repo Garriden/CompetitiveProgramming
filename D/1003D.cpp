@@ -7,30 +7,30 @@
 #include <math.h>
 
 void printVector(std::vector<int> &v) {
-	for(int ii = 0; ii < (int)v.size(); ii++) {
-		std::cout << v[ii] << " ";
-	}
+    for(int ii = 0; ii < (int)v.size(); ii++) {
+        std::cout << v[ii] << " ";
+    }
 }
 
 void swap(std::vector<int> &v, int posO, int posD) {
-	int aux = v[posO];
-	v[posO] = v[posD];
-	v[posD] = aux;
+    int aux = v[posO];
+    v[posO] = v[posD];
+    v[posD] = aux;
 }
 
 void insertionSort(std::vector<int> &vec) {
-	int pos = vec.size() -1;
-	int pos_aux = pos - 1;
-	while(pos >= 0) {
-		while(pos_aux >= 0) {
-			if(vec[pos] > vec[pos_aux]) {
-				swap(vec, pos, pos_aux);
-			}
-			pos_aux--;
-		}
-		--pos;
-		pos_aux = pos - 1;
-	}	
+    int pos = vec.size() -1;
+    int pos_aux = pos - 1;
+    while(pos >= 0) {
+        while(pos_aux >= 0) {
+            if(vec[pos] > vec[pos_aux]) {
+                swap(vec, pos, pos_aux);
+            }
+            pos_aux--;
+        }
+        --pos;
+        pos_aux = pos - 1;
+    }	
 }
 
 void invert(std::vector<int> &vec) {
