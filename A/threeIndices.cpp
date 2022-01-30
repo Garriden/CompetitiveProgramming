@@ -25,7 +25,7 @@ int a[N];
 
 void solve() {
 	cin >> n;
-	for (int ii = 0; ii < n; ++ii) cin >> a[i];
+	for (int ii = 0; ii < n; ++ii) cin >> a[ii];
 	
 	for (int ii = 1; ii < n - 1; ++ii) {
 		if (a[ii] > a[ii - 1] && a[ii] > a[ii + 1]) {
