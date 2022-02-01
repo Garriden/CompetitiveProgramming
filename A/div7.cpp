@@ -1,7 +1,9 @@
 /*********************
+https://codeforces.com/contest/1633/problem/A
+A
 
-A 
-
+brute force
+constructive algorithms
 
 3
 42
