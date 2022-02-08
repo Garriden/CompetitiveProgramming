@@ -1,10 +1,8 @@
 /*********************
 https://codeforces.com/contest/1634/problem/A
 A
-
 brute force
 strings
-
 *************************/
 
 #include <bits/stdc++.h>
@@ -17,15 +15,19 @@ void solve() {
 	string s;
 	cin >> s;
 	
-	for(int ii = 0; ii < ((s.length()/2)-1); ii++) {
+	if(m == 0) {
+	    cout << "1" << endl;
+	    return;
+	}
+	
+	for(int ii = 0; ii < (s.length()/2); ii++) {
 	    if(s[ii] != s[s.length()-1-ii]) {
-	        cout << "1" << endl;
+	        cout << "2" << endl;
 	        return;
 	    }
 	    
 	}
-	if(m != 0) cout << "2" << endl;
-	else cout << "1" << endl;
+    cout << "1" << endl;
 }
 
 int main() {
