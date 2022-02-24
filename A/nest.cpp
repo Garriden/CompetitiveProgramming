@@ -1,32 +1,29 @@
 /*********************
-https://codeforces.com/problemset/problem/71/A
+https://codeforces.com/problemset/problem/158/A
 A
 800
-strings
+
+greedy
 *************************/
 
 #include <bits/stdc++.h>
 using namespace std;
 
 void solve() {
-	int k,n
+	int k,n;
 	cin >> k >> n;
 	
 	int cont = 0;
-	int ant = -24;
 	int aux;
-	while (n --> 0)
+	while (k --> 0)
     {
         cin >> aux;
-        if(aux > ant) {
-            ant = aux;
+        if(aux >= n) {
             ++cont;
         }
     }
-     
-     
-	    cout << cont << endl;
-
+    
+    cout << cont << endl;
 }
 
 int main() {
