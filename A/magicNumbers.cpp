@@ -33,6 +33,9 @@ void solve() {
                 cout << "NO" << endl;
                 //cout << "a3" << endl;
                 return;
+            } else if(ant == 52 && s[ii-2] != '1') {
+                cout << "NO" << endl;
+                return;
             }
         }
         else if(ant == 52 && s[ii] == '4') {
