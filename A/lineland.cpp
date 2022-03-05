@@ -26,12 +26,24 @@ void solve() {
 	    
 	    for(int jj = 0; jj < n; ++jj) {
 	        if(jj != ii) {
-	            if(V[jj] + V[ii] > max) max = V[jj] + V[ii];
-	            if(V[jj] + V[ii] < min) min = V[jj] + V[ii];
+	            if( (V[jj] <= 0 && V[ii] <= 0) || (V[jj] >= 0 && V[ii] >= 0) ) {
+	                if( abs((abs(V[jj]) - abs(V[ii]))) > max) {
+	                    max = abs(abs(V[jj]) - abs(V[ii]));
+	                    //cout << "aaaaa " << jj << ", " << ii << " | " << V[ii] << ". " << V[jj] << "   " << max << endl; 
+	                }
+	                if( abs(abs(V[jj]) - abs(V[ii])) < abs(min)) {
+	                    min = abs( abs(V[jj]) - abs(V[ii]) );
+	                    //cout << "aaaaa " << jj << ", " << ii << " | " << V[ii] << ". " << V[jj] << "   " << min << endl;   
+	                }
+	            } else if((V[jj] > 0 && V[ii] < 0) || ((V[jj] < 0 && V[ii] > 0)) ) {
+	                if( abs((abs(V[jj]) + abs(V[ii]))) > max) max = abs(abs(V[jj]) + abs(V[ii]));
+	                if( abs(abs(V[jj]) + abs(V[ii])) < abs(min)) min = abs(V[jj]) + abs(V[ii]);
+	            }
+	            
 	        }
 	    
 	    }
-	    cout << min << " " << max << endl;
+	    cout << abs(min) << " " << abs(max) << endl;
 	    max = -10000000000;
         min = 10000000000;
 	}
