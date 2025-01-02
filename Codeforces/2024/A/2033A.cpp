@@ -2,7 +2,7 @@
 
 //g++ -o hola hola.cpp
 //Sakurako and Kosuke 
-//Just chec f s even or odd.
+//Just check if is even or odd.
 
 #include <iostream>
 #include <vector>
