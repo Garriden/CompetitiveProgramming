@@ -1,6 +1,7 @@
-// g++ testingArrays.cpp ResizableVector.cpp -o hola  
+// g++ testingArrays.cpp ResizableVectorString.cpp ResizableVector.cpp -o hola  
 
 #include "ResizableVector.hpp"
+#include "ResizableVectorString.hpp"
 
 void testVector() {
     ResizableVector v;
@@ -24,8 +25,18 @@ void testVector() {
     v.print();
 }
 
+void testVectorString() {
+    ResizableVectorString stringBuilder;
+
+    stringBuilder.add("hola");
+    stringBuilder.add("adeu");
+    stringBuilder.add("pasiube");
+
+    stringBuilder.print();
+}
+
 int main() {
-    testVector();
+    testVectorString();
 
     return 0;
 }
