@@ -10,6 +10,18 @@ namespace LinkedList {
         head = newNode;
     }
 
+    void insertTail(Node* &head, int data)
+    {
+        Node* runner = head;
+        while(runner->next != nullptr) {
+            runner = runner->next;
+        }
+
+        Node* newNode = new Node;
+        newNode->data = data;
+        runner->next = newNode;
+    }
+
     void removeHead(Node* &head)
     {
         if(head != nullptr) {
