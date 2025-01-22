@@ -2,7 +2,7 @@
 #include <iostream>
 
 namespace LinkedList {
-    void insert(Node* &head, int data)
+    void Insert(Node* &head, int data)
     {
         Node* newNode = new Node;
         newNode->data = data;
@@ -10,7 +10,7 @@ namespace LinkedList {
         head = newNode;
     }
 
-    void insertTail(Node* &head, int data)
+    void InsertTail(Node* &head, int data)
     {
         Node* runner = head;
         while(runner->next != nullptr) {
@@ -22,7 +22,7 @@ namespace LinkedList {
         runner->next = newNode;
     }
 
-    void removeHead(Node* &head)
+    void RemoveHead(Node* &head)
     {
         if(head != nullptr) {
             Node* temp = head;
@@ -31,7 +31,7 @@ namespace LinkedList {
         }
     }
 
-    void removeNode(Node* &previous, Node* &node)
+    void RemoveNode(Node* &previous, Node* &node)
     {
         if (node != nullptr) {
             Node* tmp = node;
@@ -41,7 +41,28 @@ namespace LinkedList {
         }
     }
 
-    void printList(Node* head) 
+    Node* ReverseList(Node* &n)
+    {
+        Node* nImpostor = n;
+        Node* retHead = new Node(n->data);
+
+        nImpostor = nImpostor->next;
+        while(nImpostor != nullptr) {
+            Node *aux = new Node(nImpostor->data);
+            aux->next = retHead;
+            retHead = aux;
+            nImpostor = nImpostor->next;
+        }
+
+        //while(retHead != nullptr) {
+        //    std:: cout << retHead->data << " ";
+        //    retHead = retHead->next;
+        //}
+
+        return retHead;
+    }
+
+    void PrintList(Node* head) 
     {
         while(head != nullptr) {
             std::cout << head->data << "-->";

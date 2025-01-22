@@ -4,11 +4,12 @@
 #include "LinkedListNode.hpp"
 
 namespace LinkedList {
-    void insert(Node* &head, int data);
-    void insertTail(Node* &head, int data);
-    void removeHead(Node* &head);
-    void removeNode(Node* &previous, Node* &node);
-    void printList(Node* head);
+    void Insert(Node* &head, int data);
+    void InsertTail(Node* &head, int data);
+    void RemoveHead(Node* &head);
+    void RemoveNode(Node* &previous, Node* &node);
+    Node* ReverseList(Node* &n);
+    void PrintList(Node* head);
 };
 
 #endif

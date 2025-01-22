@@ -78,7 +78,7 @@ Node* SumLists(Node* &n1Head, Node* &n2Head)
     Node* ret = new Node(number%10);
     number /= 10;
     while(number > 0) {
-        LinkedList::insert(ret, number%10);
+        LinkedList::Insert(ret, number%10);
         number /= 10;
     }
 
@@ -117,7 +117,7 @@ Node* SumListsReverse(Node* &n1Head, Node* &n2Head)
     number = number%(int)(pow(10,len));
     --len;
     while(number > 0) {
-        LinkedList::insert(ret, number/(pow(10,len)));
+        LinkedList::Insert(ret, number/(pow(10,len)));
         number = number%(int)(pow(10,len));
         --len;
     }
@@ -128,24 +128,24 @@ Node* SumListsReverse(Node* &n1Head, Node* &n2Head)
 int main()
 {
     Node* n1 = new Node(7, nullptr);
-    LinkedList::insert(n1, 1);
-    LinkedList::insert(n1, 6);
+    LinkedList::Insert(n1, 1);
+    LinkedList::Insert(n1, 6);
 
     Node* n2 = new Node(5, nullptr);
-    LinkedList::insert(n2, 9);
-    LinkedList::insert(n2, 2);
+    LinkedList::Insert(n2, 9);
+    LinkedList::Insert(n2, 2);
 
-    LinkedList::printList(SumLists(n1,n2));
+    LinkedList::PrintList(SumLists(n1,n2));
 
     Node* n3 = new Node(6, nullptr);
-    LinkedList::insert(n3, 1);
-    LinkedList::insert(n3, 7);
+    LinkedList::Insert(n3, 1);
+    LinkedList::Insert(n3, 7);
 
     Node* n4 = new Node(2, nullptr);
-    LinkedList::insert(n4, 9);
-    LinkedList::insert(n4, 5);
+    LinkedList::Insert(n4, 9);
+    LinkedList::Insert(n4, 5);
 
-    LinkedList::printList(SumListsReverse(n3,n4));
+    LinkedList::PrintList(SumListsReverse(n3,n4));
 
     return 0;
 }

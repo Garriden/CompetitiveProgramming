@@ -54,23 +54,23 @@ int main()
 {
     Node* n = new Node(24, nullptr);
 
-    LinkedList::insert(n, 10);
-    LinkedList::insert(n, 11);
-    LinkedList::insert(n, 4);
-    LinkedList::insert(n, 12);
-    LinkedList::insert(n, 13);
-    LinkedList::insert(n, 2);
-    LinkedList::insert(n, 1);
-    LinkedList::insert(n, 0);
-    LinkedList::insert(n, 5);
-    LinkedList::printList(n);
+    LinkedList::Insert(n, 10);
+    LinkedList::Insert(n, 11);
+    LinkedList::Insert(n, 4);
+    LinkedList::Insert(n, 12);
+    LinkedList::Insert(n, 13);
+    LinkedList::Insert(n, 2);
+    LinkedList::Insert(n, 1);
+    LinkedList::Insert(n, 0);
+    LinkedList::Insert(n, 5);
+    LinkedList::PrintList(n);
 
     Node* n1 = nullptr;
     Node* n2 = nullptr;
     Part(n,6,n1,n2);
 
-    LinkedList::printList(n1);
-    LinkedList::printList(n2);
+    LinkedList::PrintList(n1);
+    LinkedList::PrintList(n2);
 
     return 0;
 }

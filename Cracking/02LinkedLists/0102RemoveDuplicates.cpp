@@ -21,7 +21,7 @@ void removeDups(Node* head)
     while(head != nullptr) {
         //std::cout << head->data << " count: " << set.count(head->data) << std::endl;
         if(set.count(head->data) > 0) {
-            LinkedList::removeNode(previous, head);
+            LinkedList::RemoveNode(previous, head);
         } else {
             set.insert(head->data);
             previous = head;
@@ -34,19 +34,19 @@ int main()
 {
     Node* n = new Node{0, nullptr};
 
-    LinkedList::insert(n, 0);
-    LinkedList::insert(n, 1);
-    LinkedList::insert(n, 2);
-    LinkedList::insert(n, 3);
-    LinkedList::insert(n, 2);
-    LinkedList::insert(n, 2);
-    LinkedList::insert(n, 3);
-    LinkedList::insert(n, 2);
-    LinkedList::insert(n, 2);
-    LinkedList::printList(n);
+    LinkedList::Insert(n, 0);
+    LinkedList::Insert(n, 1);
+    LinkedList::Insert(n, 2);
+    LinkedList::Insert(n, 3);
+    LinkedList::Insert(n, 2);
+    LinkedList::Insert(n, 2);
+    LinkedList::Insert(n, 3);
+    LinkedList::Insert(n, 2);
+    LinkedList::Insert(n, 2);
+    LinkedList::PrintList(n);
 
     removeDups(n);
-    LinkedList::printList(n);
+    LinkedList::PrintList(n);
 
     return 0;
 }

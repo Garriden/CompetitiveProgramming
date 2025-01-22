@@ -49,7 +49,7 @@ Node* KthIterate(Node* &head, int k)
             found = true;
             ret = new Node(head->data);
         } else if(found) {
-            LinkedList::insertTail(ret, head->data);
+            LinkedList::InsertTail(ret, head->data);
         }
         ++ii;
         head = head->next;
@@ -62,21 +62,21 @@ int main()
 {
     Node* n = new Node(24, nullptr);
 
-    LinkedList::insert(n, 10);
-    LinkedList::insert(n, 11);
-    LinkedList::insert(n, 12);
-    LinkedList::insert(n, 13);
-    LinkedList::insert(n, 2);
-    LinkedList::insert(n, 1);
-    LinkedList::insert(n, 0);
-    LinkedList::insert(n, 4);
-    LinkedList::insert(n, 5);
-    LinkedList::printList(n);
+    LinkedList::Insert(n, 10);
+    LinkedList::Insert(n, 11);
+    LinkedList::Insert(n, 12);
+    LinkedList::Insert(n, 13);
+    LinkedList::Insert(n, 2);
+    LinkedList::Insert(n, 1);
+    LinkedList::Insert(n, 0);
+    LinkedList::Insert(n, 4);
+    LinkedList::Insert(n, 5);
+    LinkedList::PrintList(n);
 
     int i = 1;
-    LinkedList::printList(KthRecursive(n, 6, i));
-    //LinkedList::printList(KthIterate(n, 6));
-    //LinkedList::printList(Kth(n, 6));
+    LinkedList::PrintList(KthRecursive(n, 6, i));
+    //LinkedList::PrintList(KthIterate(n, 6));
+    //LinkedList::PrintList(Kth(n, 6));
 
     return 0;
 }
