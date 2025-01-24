@@ -16,6 +16,10 @@
     Time complexity: O(n)
 
   - Two Pointers?
+    - Run each list, get the lenghts and tails.
+    - Compare the tails, if they're the same, there is an intersection.
+    - On the longer list, start on his length - smaller list lenght.
+    - Iterate and compare.
     Time complexity: O(n)
     Space complexity: O(1)
 */
