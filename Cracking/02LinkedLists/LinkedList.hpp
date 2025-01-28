@@ -9,6 +9,7 @@ namespace LinkedList {
     void RemoveHead(Node* &head);
     void RemoveNode(Node* &previous, Node* &node);
     Node* ReverseList(Node* &n);
+    Node* ReverseList2(Node* head);
     void PrintList(Node* head);
 };
 

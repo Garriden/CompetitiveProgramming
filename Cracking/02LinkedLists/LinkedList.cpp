@@ -54,12 +54,35 @@ namespace LinkedList {
             nImpostor = nImpostor->next;
         }
 
-        //while(retHead != nullptr) {
-        //    std:: cout << retHead->data << " ";
-        //    retHead = retHead->next;
-        //}
+        Node* nAux = n;
+        while(nAux != nullptr) {
+            std:: cout << nAux->data << " ";
+            nAux = nAux->next;
+        }
 
         return retHead;
+    }
+
+    Node* ReverseList2(Node* head) {
+        Node* prev = nullptr;
+        Node* curr = head;
+        Node* next;
+
+        while (curr != nullptr) {
+            next = curr->next; 
+            curr->next = prev; 
+            prev = curr;
+            curr = next;
+        }
+
+
+        Node* nAux = prev;
+        while(nAux != nullptr) {
+            std:: cout << nAux->data << " ->";
+            nAux = nAux->next;
+        }
+
+        return prev;
     }
 
     void PrintList(Node* head) 

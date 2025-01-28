@@ -40,7 +40,7 @@ bool isPalindrome(Node* &n)
 
 bool isPalindromeList(Node* &n)
 {
-    Node* reversed = LinkedList::ReverseList(n);
+    Node* reversed = LinkedList::ReverseList2(n);
 
     while(n != nullptr) {
         if(reversed->data != n->data) {
