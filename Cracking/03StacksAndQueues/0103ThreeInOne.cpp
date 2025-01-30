@@ -13,7 +13,7 @@
 std::vector<int> v(100, 0);
 int stack1Top = 0;
 int stack2Top = v.size() - 1;
-int stack3Top = 30; // Posible improvement, be in the end of stack1
+int stack3Top = 30; // Posible improvement, be in the end of stack1, or flexible array.
 
 void InsertStack1(int x)
 {
