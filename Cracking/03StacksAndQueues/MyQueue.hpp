@@ -39,11 +39,14 @@ public:
 private:
     Node<T> *first;
     Node<T> *last;
+    int size;
 };
 
 template<typename T>
 Queue<T>::Queue() : 
-   first{nullptr}
+   first{nullptr},
+   last{nullptr},
+   size{0}
 {}
 
 template<typename T>
@@ -57,6 +60,7 @@ void Queue<T>::push(T val)
         last->next = n; 
         last = n;
     }
+    ++size;
 }
 
 template<typename T>
@@ -67,6 +71,7 @@ void Queue<T>::pop()
         first = first->next;
         delete n;
     }
+    --size;
 }
 
 template<typename T>
