@@ -34,14 +34,17 @@ public:
     void pop();
     T top();
     bool isEmpty();
+    int min();
 
 private:
     Node<T> *head;
+    int minim;
 };
 
 template<typename T>
 Stack<T>::Stack() : 
-   head{nullptr}
+   head{nullptr},
+   minim{INT_MAX}
 {}
 
 template<typename T>
@@ -53,6 +56,10 @@ void Stack<T>::push(T val)
     } else {
       n->next = head; 
       head = n;
+    }
+
+    if(val < minim) {
+        minim = val;
     }
 }
 
@@ -78,6 +85,12 @@ template<typename T>
 bool Stack<T>::isEmpty()
 {
     return (head == nullptr);
+}
+
+template<typename T>
+int Stack<T>::min()
+{
+    return (minim);
 }
 
 template<typename T>
