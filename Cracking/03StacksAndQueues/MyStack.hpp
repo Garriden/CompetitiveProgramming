@@ -37,6 +37,8 @@ public:
     int min();
 
 private:
+    int findNewMin();
+
     Node<T> *head;
     int minim;
 };
@@ -66,10 +68,16 @@ void Stack<T>::push(T val)
 template<typename T>
 void Stack<T>::pop()
 {
+    int val = head->val;
+
     if(head != nullptr) {
         Node<T>* n = head;
         head = head->next;
         delete n;
+    }
+
+    if(val == minim) {
+        minim = findNewMin();
     }
 }
 
@@ -92,6 +100,24 @@ int Stack<T>::min()
 {
     return (minim);
 }
+
+template<typename T>
+int Stack<T>::findNewMin()
+{
+    int minRet = INT_MAX;
+
+    Node<T>* n = head;
+    while(n != nullptr) {
+        if(n->val < minRet) {
+            minRet = n->val;
+        }
+        n = n->next;
+    }
+    delete n;
+
+    return minRet;
+}
+
 
 template<typename T>
 Stack<T>::~Stack(){

@@ -8,7 +8,7 @@
 
 /*
   Private variable in the class. (Doesn't work because of pop).
-  Or build another stack.
+  Or build another data structure.
     Time complexity: O(n)
 */
 
@@ -21,10 +21,10 @@ int main()
     st.push(2);
     st.push(3);
 
-    //for(int ii = 0; ii < v.size(); ++ii) {
-    //    std::cout << v[ii] << " ";
-    //}
-    //std::cout << std::endl;
+    st.pop();
+    st.pop();
+    st.pop();
+    st.push(12);
 
     std::cout << st.min() << std::endl;
 
