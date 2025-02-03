@@ -2,15 +2,17 @@
 #define MY_STACK_H
 
 #include <iostream>
+#include <vector>
 
 template<typename U> class Node {
 public:
     Node(U v);
     void setNext(Node<U>* n);
 private:
-    Node<U>* next;
+    Node<U>* next; // Upointer
     U val;
     template<typename T> friend class Stack;
+    template<typename T> friend class SetOfStackS;
 };
 
 template<typename U> 
@@ -84,9 +86,10 @@ void Stack<T>::pop()
 template<typename T>
 T Stack<T>::top()
 {
-    if(head != nullptr) {
-        return head->val;
+    if(head == nullptr) {
+        throw std::runtime_error("Cannot get top of an empty stack");
     }
+    return head->val;
 }
 
 template<typename T>
@@ -118,7 +121,6 @@ int Stack<T>::findNewMin()
     return minRet;
 }
 
-
 template<typename T>
 Stack<T>::~Stack(){
     while(head != nullptr) {
@@ -126,5 +128,110 @@ Stack<T>::~Stack(){
         pop();
     }
 }
+
+
+template<typename T> 
+class SetOfStackS {
+public:
+    SetOfStackS();
+    SetOfStackS(int x);
+    ~SetOfStackS();
+    void push(T val);
+    void pop();
+    T top();
+    bool isEmpty();
+
+private:
+    std::vector<Stack<T> > _vectorStacks; //upointer
+    int _thresh;
+    int _currentStack;
+    int _currentLayer;
+};
+
+
+template<typename T>
+SetOfStackS<T>::SetOfStackS() : 
+   _vectorStacks(),
+   _thresh{},
+   _currentStack{0},
+   _currentLayer{0}
+{}
+
+template<typename T>
+SetOfStackS<T>::SetOfStackS(int x) : 
+   _vectorStacks(),
+   _thresh{x},
+   _currentStack{0},
+   _currentLayer{0}
+{}
+
+template<typename T>
+void SetOfStackS<T>::push(T val)
+{
+    //Node<T>* n = new Node<T>(val);
+    //if(_vectorStacks[_currentStack] == nullptr) {
+    //    head = n;
+    //} else {
+    //    _vectorStacks[_currentStack].push();
+    //  n->next = head; 
+    //  head = n;
+    //}
+//
+    //++_currentLayer;
+//
+    //if(_currentLayer == _thresh) {
+    //    _vectorStacks.push_back();
+    //    ++_currentStack;
+    //    _currentLayer = 0;
+    //}
+
+}
+
+template<typename T>
+void SetOfStackS<T>::pop()
+{
+    //Node<T> *topNode = _vectorStacks[_currentStack];
+//
+    //if(topNode != nullptr) {
+    //    _vectorStacks[_currentStack] = topNode->next;
+    //    delete topNode;
+    //}
+//
+    //--_currentLayer;
+//
+    //// See if need to remove stack.
+    //topNode = _vectorStacks[_currentStack];
+//
+    //if(topNode == nullptr) {
+    //    _vectorStacks.pop_back();
+    //    --_currentStack;
+    //    _currentLayer = _thresh;
+    //}
+}
+
+template<typename T>
+T SetOfStackS<T>::top()
+{
+    if(_vectorStacks.empty()) {
+        throw std::runtime_error("Cannot get top of an empty stack");
+    }
+
+    Stack<T>& currentStack = _vectorStacks[_currentStack];
+    return currentStack.top();
+}
+
+template<typename T>
+bool SetOfStackS<T>::isEmpty()
+{
+    return _vectorStacks.empty();
+}
+
+template<typename T>
+SetOfStackS<T>::~SetOfStackS(){
+    while(!_vectorStacks.empty()) {
+        _vectorStacks.pop_back();
+    }
+}
+
 
 #endif
