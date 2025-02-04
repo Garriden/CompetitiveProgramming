@@ -16,10 +16,15 @@ int main()
     SetOfStackS<int> stacks(3);
 
     stacks.push(24);
-    stacks.top();
+    std::cout << stacks.top() << std::endl;
     stacks.push(1);
     stacks.push(2);
     stacks.push(3);
+    stacks.push(4);
+    stacks.push(5);
+    stacks.push(6);
+    stacks.push(7);
+    std::cout << stacks.top() << std::endl;
 
     //st.pop();
     //st.pop();

@@ -37,11 +37,11 @@ public:
     T top();
     bool isEmpty();
     int min();
+    Node<T> *head;
 
 private:
     int findNewMin();
-
-    Node<T> *head;
+    
     int minim;
 };
 
@@ -168,23 +168,40 @@ SetOfStackS<T>::SetOfStackS(int x) :
 template<typename T>
 void SetOfStackS<T>::push(T val)
 {
-    //Node<T>* n = new Node<T>(val);
-    //if(_vectorStacks[_currentStack] == nullptr) {
-    //    head = n;
-    //} else {
-    //    _vectorStacks[_currentStack].push();
-    //  n->next = head; 
-    //  head = n;
-    //}
-//
-    //++_currentLayer;
-//
-    //if(_currentLayer == _thresh) {
-    //    _vectorStacks.push_back();
-    //    ++_currentStack;
-    //    _currentLayer = 0;
-    //}
+    std::cout << "::push()" << std::endl;
 
+    if(_vectorStacks.empty()) {
+        Stack<T> sta;
+        _vectorStacks.push_back(sta);
+    }
+
+    Node<T>* n = new Node<T>(val);
+
+    if(_vectorStacks[_currentStack].head == nullptr) {
+        std::cout << "  s()" << std::endl;
+        _vectorStacks[_currentStack].head = n;
+    } else {
+        std::cout << "  ds()" << std::endl;
+        _vectorStacks[_currentStack].push(val);
+        n->next = _vectorStacks[_currentStack].head; 
+        _vectorStacks[_currentStack].head = n;
+    }
+
+    ++_currentLayer;
+
+    if(_currentLayer == _thresh) {
+        std::cout << " update stack" << std::endl;
+        Stack<T> st;
+        std::cout << "a" << std::endl;
+        _vectorStacks.push_back(st);
+        Stack<T> st2;
+        std::cout << "a2" << std::endl;
+        _vectorStacks.push_back(st2);
+        std::cout << "b" << std::endl;
+        ++_currentStack;
+        _currentLayer = 0;
+    }
+ 
 }
 
 template<typename T>
@@ -212,11 +229,16 @@ void SetOfStackS<T>::pop()
 template<typename T>
 T SetOfStackS<T>::top()
 {
+    std::cout << "::top()" << std::endl;
+
     if(_vectorStacks.empty()) {
         throw std::runtime_error("Cannot get top of an empty stack");
     }
 
     Stack<T>& currentStack = _vectorStacks[_currentStack];
+
+    //std::cout << currentStack.top() << std::endl;
+
     return currentStack.top();
 }
 
