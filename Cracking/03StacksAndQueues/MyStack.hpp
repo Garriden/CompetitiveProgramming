@@ -39,10 +39,20 @@ public:
     int min();
     Node<T> *head;
 
+    // Copy Constructor (Deep Copy)
+    Stack(const Stack& other) : head(nullptr), minim(INT_MAX) {
+        Node<T>* current = other.head;
+        while (current != nullptr) {
+            push(current->val);
+            current = current->next;
+        }
+        minim = other.minim;
+    }
+
 private:
     int findNewMin();
-    
     int minim;
+
 };
 
 template<typename T>
@@ -50,6 +60,8 @@ Stack<T>::Stack() :
    head{nullptr},
    minim{INT_MAX}
 {}
+
+
 
 template<typename T>
 void Stack<T>::push(T val)
@@ -70,13 +82,14 @@ void Stack<T>::push(T val)
 template<typename T>
 void Stack<T>::pop()
 {
-    int val = head->val;
-
-    if(head != nullptr) {
-        Node<T>* n = head;
-        head = head->next;
-        delete n;
+    if (head == nullptr) {
+        throw std::runtime_error("Cannot pop from an empty stack");
     }
+
+    Node<T>* n = head;
+    T val = head->val;
+    head = head->next;
+    delete n;
 
     if(val == minim) {
         minim = findNewMin();
@@ -168,36 +181,20 @@ SetOfStackS<T>::SetOfStackS(int x) :
 template<typename T>
 void SetOfStackS<T>::push(T val)
 {
-    std::cout << "::push()" << std::endl;
-
     if(_vectorStacks.empty()) {
         Stack<T> sta;
         _vectorStacks.push_back(sta);
     }
 
     Node<T>* n = new Node<T>(val);
-
-    if(_vectorStacks[_currentStack].head == nullptr) {
-        std::cout << "  s()" << std::endl;
-        _vectorStacks[_currentStack].head = n;
-    } else {
-        std::cout << "  ds()" << std::endl;
-        _vectorStacks[_currentStack].push(val);
-        n->next = _vectorStacks[_currentStack].head; 
-        _vectorStacks[_currentStack].head = n;
-    }
+    _vectorStacks[_currentStack].push(val);
 
     ++_currentLayer;
 
     if(_currentLayer == _thresh) {
         std::cout << " update stack" << std::endl;
         Stack<T> st;
-        std::cout << "a" << std::endl;
         _vectorStacks.push_back(st);
-        Stack<T> st2;
-        std::cout << "a2" << std::endl;
-        _vectorStacks.push_back(st2);
-        std::cout << "b" << std::endl;
         ++_currentStack;
         _currentLayer = 0;
     }
@@ -207,37 +204,32 @@ void SetOfStackS<T>::push(T val)
 template<typename T>
 void SetOfStackS<T>::pop()
 {
-    //Node<T> *topNode = _vectorStacks[_currentStack];
-//
-    //if(topNode != nullptr) {
-    //    _vectorStacks[_currentStack] = topNode->next;
-    //    delete topNode;
-    //}
-//
-    //--_currentLayer;
-//
-    //// See if need to remove stack.
-    //topNode = _vectorStacks[_currentStack];
-//
-    //if(topNode == nullptr) {
-    //    _vectorStacks.pop_back();
-    //    --_currentStack;
-    //    _currentLayer = _thresh;
-    //}
+    if (_vectorStacks.empty()) {
+        throw std::runtime_error("SetOfStacks is empty");
+    }
+
+    if (_vectorStacks[_currentStack].isEmpty()) {
+        throw std::runtime_error("Current stack is unexpectedly empty before pop");
+    }
+
+    _vectorStacks[_currentStack].pop();
+
+    if(_vectorStacks[_currentStack].isEmpty()) {
+        _vectorStacks.pop_back();
+        --_currentStack;
+        _currentLayer = _thresh;
+    }
+
 }
 
 template<typename T>
 T SetOfStackS<T>::top()
 {
-    std::cout << "::top()" << std::endl;
-
     if(_vectorStacks.empty()) {
         throw std::runtime_error("Cannot get top of an empty stack");
     }
 
     Stack<T>& currentStack = _vectorStacks[_currentStack];
-
-    //std::cout << currentStack.top() << std::endl;
 
     return currentStack.top();
 }

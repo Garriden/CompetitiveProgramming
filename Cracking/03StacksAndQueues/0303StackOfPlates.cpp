@@ -17,21 +17,37 @@ int main()
 
     stacks.push(24);
     std::cout << stacks.top() << std::endl;
+    stacks.pop();
+    
     stacks.push(1);
-    stacks.push(2);
-    stacks.push(3);
-    stacks.push(4);
-    stacks.push(5);
-    stacks.push(6);
-    stacks.push(7);
     std::cout << stacks.top() << std::endl;
 
-    //st.pop();
-    //st.pop();
-    //st.pop();
-    //st.push(12);
+  
+    stacks.push(2);
+    //stacks.push(3);
+    std::cout << stacks.top() << std::endl;
+    stacks.pop();
+    std::cout << stacks.top() << std::endl;
+    
+   stacks.push(4);
+   std::cout << stacks.top() << std::endl;
+   stacks.push(5);
+   std::cout << stacks.top() << std::endl;
+   stacks.push(6);
+   std::cout << stacks.top() << std::endl;
+   stacks.push(7);
+   std::cout << stacks.top() << std::endl;
 
-    //std::cout << st.min() << std::endl;
+    stacks.pop();
+    std::cout << stacks.top() << std::endl;
+    stacks.pop();
+    std::cout << stacks.top() << std::endl;
+    stacks.pop();
+    std::cout << stacks.top() << std::endl;
+    stacks.pop();
+    std::cout << stacks.top() << std::endl;
+    stacks.pop();
+    std::cout << stacks.top() << std::endl;
 
     return 0;
 }
