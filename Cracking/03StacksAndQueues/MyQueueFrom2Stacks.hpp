@@ -18,18 +18,26 @@ public:
 private:
     std::stack<T> _stack1;
     std::stack<T> _stack2;
+    T _front;
+    T _back;
 };
 
 template<typename T>
 Queue<T>::Queue() : 
    _stack1{},
-   _stack2{}
+   _stack2{},
+   _front{},
+   _back{}
 {}
 
 template<typename T>
 void Queue<T>::push(T val)
 {
+    if(_stack1.empty() && _stack2.empty()) {
+        _front = val;
+    }
     _stack1.push(val);
+    _back = val;
     std::cout << "::pushed " << _stack1.top() << std::endl;
 }
 
@@ -40,23 +48,21 @@ void Queue<T>::pop()
         _stack2.push(_stack1.top());
         _stack1.pop();
     }
-    std::cout << _stack2.top() << "::poped." << std::endl;
+    std::cout << _stack2.top() << " is ::poped." << std::endl;
     _stack2.pop();
+    _front = _stack2.top();
 }
 
 template<typename T>
 T Queue<T>::front()
 {
-    if(!_stack2.empty()) {
-        return _stack2.top();
-    }
-    return 0; //_stack1.top();
+    return _front;
 }
 
 template<typename T>
 T Queue<T>::back()
 {
-    return _stack1.top();
+    return _back;
 }
 
 template<typename T>

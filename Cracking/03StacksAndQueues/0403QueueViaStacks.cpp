@@ -29,6 +29,7 @@ int main()
     std::cout << stacks.front() << std::endl;
     stacks.push(7);
     std::cout << stacks.front() << std::endl;
+    std::cout << "Back: " << stacks.back() << std::endl;
 
     stacks.pop();
     std::cout << stacks.front() << std::endl;
@@ -40,6 +41,7 @@ int main()
     std::cout << stacks.front() << std::endl;
     stacks.pop();
     std::cout << stacks.front() << std::endl;
+    std::cout << "Back: " << stacks.back() << std::endl;
 
     stacks.push(8);
     std::cout << stacks.front() << std::endl;
