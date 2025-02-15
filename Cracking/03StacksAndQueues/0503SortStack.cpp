@@ -4,19 +4,33 @@
 // g++ .\0503SortStack.cpp -o hola
 
 /*
-    Time complexity: O(n)
+    Find bigger one, stack (but needs three stacks).
+
+    Some sorting algorithm? (Quick sort or merge sort but requieres infinite stacks or additional data structure).
+
+    Sorting algorithm. Pick one element
+    Time complexity O(n^2). Space complexity O(n)
 */
 
 void SortStack(std::stack<int>& st)
 {
-    std::stack<int> stack1;
     std::stack<int> stack2;
 
-    //find bigger one, stack
-    // Time complexity O(n^2)
+    while(!st.empty()) {
+        int value = st.top();
+        st.pop();
+        while(!stack2.empty() && value > stack2.top()) {
+            int aux = stack2.top();
+            stack2.pop();
+            st.push(aux);
+        }
 
-    //Some sorting algorithm?
+        if(stack2.empty() || value <= stack2.top()) {
+            stack2.push(value);
+        }
+    }
 
+    st = stack2;
 }
 
 int main()
@@ -26,7 +40,9 @@ int main()
     st.push(2);
     st.push(3);
     st.push(4);
+    // 4 3 2 1
     SortStack(st);
+    // 1 2 3 4
 
     while (!st.empty()) {
         std::cout << st.top() << " ";
