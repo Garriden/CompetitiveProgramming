@@ -21,24 +21,46 @@
 
 std::map<int, std::pair<std::string,std::string> > queue;
 
-void Enqueue(const std::string& animalName, const std::string& animal)
-{
+static int index = 0;
 
+void Enqueue(const std::string& animal, const std::string& animalName)
+{
+    queue[index++] = {animal, animalName};
+}
+
+std::string DequeueAny()
+{
+    std::string ret = queue[0].second;
+    //std::cout  << std::endl;
+    queue.erase(queue.begin()->first);
+    return ret;
 }
 
 int main()
 {
-    Enqueue("Marrameu",     "cat");
-    Enqueue("Mixa",         "cat");
-    Enqueue("Orelles",      "dogo");
-    Enqueue("ElRufas",      "cat");
+    Enqueue("cat", "Marrameu");
+    Enqueue("cat", "Mixa");
+    Enqueue("dog", "Orelles");
+    Enqueue("cat", "ElRufas");
 
 
-    while (!queue.empty()) {
+    //while (!queue.empty()) {
         //std::cout << queue.front() << " ";
         //queue.pop();
-    }
-    std::cout << std::endl;
+    //}
     
+
+    for(auto it : queue) {
+        std::cout << it.first << " " << it.second.first << " " << it.second.second << std::endl;
+    } std::cout << std::endl;
+
+    DequeueAny();
+    DequeueAny();
+    DequeueAny();
+
+    for(auto it : queue) {
+        std::cout << it.first << " " << it.second.first << " " << it.second.second << std::endl;
+    } std::cout << std::endl;
+
     return 0;
 }
