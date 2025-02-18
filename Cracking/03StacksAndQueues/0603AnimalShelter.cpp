@@ -30,9 +30,9 @@ void Enqueue(const std::string& animal, const std::string& animalName)
 
 std::string DequeueAny()
 {
-    std::string ret = queue[0].second;
+    std::string ret = queue.begin()->second.second;
     //std::cout  << std::endl;
-    queue.erase(queue.begin()->first);
+    queue.erase(queue.begin());
     return ret;
 }
 
@@ -54,13 +54,13 @@ int main()
         std::cout << it.first << " " << it.second.first << " " << it.second.second << std::endl;
     } std::cout << std::endl;
 
-    DequeueAny();
-    DequeueAny();
-    DequeueAny();
+    std::cout << DequeueAny() << std::endl;
+    std::cout << DequeueAny() << std::endl;
+    std::cout << DequeueAny() << std::endl;
 
-    for(auto it : queue) {
-        std::cout << it.first << " " << it.second.first << " " << it.second.second << std::endl;
-    } std::cout << std::endl;
+    //for(auto it : queue) {
+    //   std::cout << it.first << " " << it.second.first << " " << it.second.second << std::endl;
+    //} std::cout << std::endl;
 
     return 0;
 }
