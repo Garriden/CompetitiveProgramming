@@ -31,9 +31,33 @@ void Enqueue(const std::string& animal, const std::string& animalName)
 std::string DequeueAny()
 {
     std::string ret = queue.begin()->second.second;
-    //std::cout  << std::endl;
     queue.erase(queue.begin());
     return ret;
+}
+
+std::string DequeueCat()
+{
+    for(const auto& elem : queue) {
+        if(elem.second.first == "cat") { // find first cat.
+            queue.erase(elem.first);
+            return elem.second.second;
+        }
+    }
+
+    return "Not more cats available. I killed... I'm kidding, all of them have a warm house.";
+}
+
+
+std::string DequeueDog()
+{
+    for(const auto& elem : queue) {
+        if(elem.second.first == "dog") { // find first fogo.
+            queue.erase(elem.first);
+            return elem.second.second;
+        }
+    }
+
+    return "No more dogo.";
 }
 
 int main()
@@ -43,24 +67,34 @@ int main()
     Enqueue("dog", "Orelles");
     Enqueue("cat", "ElRufas");
 
+    std::cout << DequeueAny() << std::endl;
+    std::cout << DequeueAny() << std::endl;
+    std::cout << DequeueAny() << std::endl;
 
-    //while (!queue.empty()) {
-        //std::cout << queue.front() << " ";
-        //queue.pop();
-    //}
-    
+    std::cout << std::endl;
+
+    Enqueue("cat", "AAA");
+    Enqueue("cat", "BBB");
+    Enqueue("dog", "ZZZZ");
+    Enqueue("cat", "CCC");
+    Enqueue("dog", "YYYYY");
+    Enqueue("cat", "DDD");
+    Enqueue("dog", "XXX");
 
     for(auto it : queue) {
         std::cout << it.first << " " << it.second.first << " " << it.second.second << std::endl;
     } std::cout << std::endl;
 
-    std::cout << DequeueAny() << std::endl;
-    std::cout << DequeueAny() << std::endl;
-    std::cout << DequeueAny() << std::endl;
 
-    //for(auto it : queue) {
-    //   std::cout << it.first << " " << it.second.first << " " << it.second.second << std::endl;
-    //} std::cout << std::endl;
+    std::cout << DequeueCat() << std::endl;
+    std::cout << DequeueCat() << std::endl;
+
+    std::cout << std::endl;
+
+    std::cout << DequeueDog() << std::endl;
+    std::cout << DequeueDog() << std::endl;
+    std::cout << DequeueDog() << std::endl;
+    std::cout << DequeueDog() << std::endl;
 
     return 0;
 }
