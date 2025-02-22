@@ -3,7 +3,7 @@
 
 // g++ TraversalTrees.cpp Node.cpp -o hola
 
-// 2 1 3
+// 4 2 5 1 6 3 7
 void inorder(Node* n)
 {
     if(n != nullptr) {
@@ -13,14 +13,38 @@ void inorder(Node* n)
     }
 }
 
+// 1 4 2 5 6 3 7
+void preorder(Node* n)
+{
+    if(n != nullptr) {
+        std::cout << n->vaule << std::endl;
+        inorder(n->left);
+        inorder(n->right);
+    }
+}
+
+// 4 2 5 6 3 7 1
+void postorder(Node* n)
+{
+    if(n != nullptr) {
+        inorder(n->left);
+        inorder(n->right);
+        std::cout << n->vaule << std::endl;
+    }
+}
+
 int main()
 {
     // Build a tree.
     Node* n = new Node(1);
     n->left = new Node(2);
     n->right = new Node(3);
+    n->left->left = new Node(4);
+    n->left->right = new Node(5);
+    n->right->left = new Node(6);
+    n->right->right = new Node(7);
 
-    inorder(n);
+    postorder(n);
 
     return 0;
 }
