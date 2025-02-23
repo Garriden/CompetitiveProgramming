@@ -6,7 +6,6 @@
 
 int maxLevel = 0;
 
-// 4 2 5 6 3 7 1
 void DFS(Node* n, int level)
 {
     std::cout << "Node: " << n->value << "  / level: " << level << std::endl;
@@ -55,7 +54,7 @@ int DFSIterative(Node* n) {
         level = levels.top();
         levels.pop();
     }
-    
+
     return maxLevel;
 }
 
