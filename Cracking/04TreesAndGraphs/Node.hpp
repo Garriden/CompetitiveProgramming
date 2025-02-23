@@ -6,7 +6,7 @@ public:
     Node();
     Node(int val);
 
-    int vaule;
+    int value;
     Node* left;
     Node* right;
 };

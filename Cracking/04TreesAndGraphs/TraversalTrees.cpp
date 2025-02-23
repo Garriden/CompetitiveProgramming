@@ -4,32 +4,32 @@
 // g++ TraversalTrees.cpp Node.cpp -o hola
 
 // 4 2 5 1 6 3 7
-void inorder(Node* n)
+void inorder(Node* n) // Left + root + Right
 {
     if(n != nullptr) {
         inorder(n->left);
-        std::cout << n->vaule << std::endl;
+        std::cout << n->value << std::endl;
         inorder(n->right);
     }
 }
 
 // 1 4 2 5 6 3 7
-void preorder(Node* n)
+void preorder(Node* n) // root + left + right
 {
     if(n != nullptr) {
-        std::cout << n->vaule << std::endl;
+        std::cout << n->value << std::endl;
         inorder(n->left);
         inorder(n->right);
     }
 }
 
 // 4 2 5 6 3 7 1
-void postorder(Node* n)
+void postorder(Node* n) // Left + Right + root
 {
     if(n != nullptr) {
         inorder(n->left);
         inorder(n->right);
-        std::cout << n->vaule << std::endl;
+        std::cout << n->value << std::endl;
     }
 }
 
