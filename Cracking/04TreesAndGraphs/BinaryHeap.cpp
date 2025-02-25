@@ -105,6 +105,20 @@ void PrintBinaryTree(Node* n)
     std:: cout << std:: endl;
 }
 
+void BubbleSortMinimum(Node* newLeaf) 
+{
+    int aux;
+
+    while(newLeaf->parent != nullptr && newLeaf->value < newLeaf->parent->value) {
+        //std::cout << "newLeaf: " << aaa->value << "  / newLeaf->parent: " << aaa->parent->value << std::endl;
+
+        aux = newLeaf->parent->value;
+        newLeaf->parent->value = newLeaf->value;
+        newLeaf->value = aux;
+        newLeaf = newLeaf->parent;
+    }
+}
+
 void InsertIntoComplentePosition(Node* n, const int &value) 
 {
     int maxLevel = GetMaxLevelBFS(n);
@@ -123,10 +137,14 @@ void InsertIntoComplentePosition(Node* n, const int &value)
         if((n->left == nullptr && n->right == nullptr) && (level != maxLevel)) {
             Node* newLeaf = new Node(value);
             n->left = newLeaf;
+            newLeaf->parent = n;
+            BubbleSortMinimum(newLeaf);
             return;
         } else if(n->right == nullptr) {
             Node* newLeaf = new Node(value);
             n->right = newLeaf;
+            newLeaf->parent = n;
+            BubbleSortMinimum(newLeaf);
             return;
         }
 
@@ -155,11 +173,8 @@ void InsertIntoComplentePosition(Node* n, const int &value)
     }
     Node* newLeaf = new Node(value);
     root->left = newLeaf;
-}
-
-void BubbleSortMinimum(Node* n) 
-{
-
+    newLeaf->parent = root;
+    BubbleSortMinimum(newLeaf);
 }
 
 void Insert(Node* n, int value)
@@ -167,19 +182,28 @@ void Insert(Node* n, int value)
     InsertIntoComplentePosition(n, value);
 
     PrintBinaryTree(n);
-
-    BubbleSortMinimum(n);
 }
 
 int main()
 {
     // Build a min heap.
     Node* n = new Node(4);
+    n->parent = nullptr;
+
     n->left = new Node(50);
+    n->left->parent = n;
+
     n->right = new Node(7);
+    n->right->parent = n;
+
     n->left->left = new Node(55);
+    n->left->left->parent = n->left;
+
     n->left->right = new Node(99);
+    n->left->right->parent = n->left;
+
     n->right->left = new Node(87);
+    n->right->left->parent = n->right;
     //n->right->right = new Node(88);
 
     PrintBinaryTree(n);
