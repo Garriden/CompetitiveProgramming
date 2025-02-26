@@ -11,12 +11,6 @@
    50        7
   /   \     /
 55    99  87
-
- - Find leafs (BFS).
- - Compare leaf with leaf before. Return position.
- - If all leafs have the same level, insert into innermost left.
- - How to store path? Another queue? Bitset? No need, just insert Node into there.
-
 */
 
 int GetMaxLevelBFS(Node* n) {
@@ -105,7 +99,29 @@ void PrintBinaryTree(Node* n)
     std:: cout << std:: endl;
 }
 
-void BubbleSortMinimum(Node* newLeaf) 
+void BubbleSortDownMaximum(Node* n)
+{
+    int max = n->value;
+    int leftValue, rightValue;
+
+    while(n->left != nullptr && n->right != nullptr) {
+        leftValue = n->left->value;
+        rightValue = n->right->value;
+
+        if(leftValue < rightValue) {
+            n->value = leftValue;
+            n = n->left;
+            n->value = max;
+        } else {
+            n->value = rightValue;
+            n = n->right;
+            n->value = max;
+        }
+    }
+
+} 
+
+void BubbleSortUpMinimum(Node* newLeaf) 
 {
     int aux;
 
@@ -119,7 +135,14 @@ void BubbleSortMinimum(Node* newLeaf)
     }
 }
 
-void InsertIntoComplentePosition(Node* n, const int &value) 
+/*
+ - Find leafs (BFS).
+ - Compare leaf with leaf before. Return position.
+ - If all leafs have the same level, insert into innermost left.
+ - Just insert Node into there.
+ - Bubble minimum element inserted up.
+ */
+void Insert(Node* n, int value)
 {
     int maxLevel = GetMaxLevelBFS(n);
     int level = 1;
@@ -138,13 +161,13 @@ void InsertIntoComplentePosition(Node* n, const int &value)
             Node* newLeaf = new Node(value);
             n->left = newLeaf;
             newLeaf->parent = n;
-            BubbleSortMinimum(newLeaf);
+            BubbleSortUpMinimum(newLeaf);
             return;
         } else if(n->right == nullptr) {
             Node* newLeaf = new Node(value);
             n->right = newLeaf;
             newLeaf->parent = n;
-            BubbleSortMinimum(newLeaf);
+            BubbleSortUpMinimum(newLeaf);
             return;
         }
 
@@ -174,14 +197,67 @@ void InsertIntoComplentePosition(Node* n, const int &value)
     Node* newLeaf = new Node(value);
     root->left = newLeaf;
     newLeaf->parent = root;
-    BubbleSortMinimum(newLeaf);
+    BubbleSortUpMinimum(newLeaf);
 }
 
-void Insert(Node* n, int value)
+/*
+ - Get first node value.
+ - Find Bottommost rightmost one, erase it and put its value to the root.
+ - Bubble down this maximum value (now in root).
+ */
+int ExtractMin(Node* n)
 {
-    InsertIntoComplentePosition(n, value);
+    int returnValue = n->value;
+    
+    int maxLevel = GetMaxLevelBFS(n);
+    int level = 1;
 
-    PrintBinaryTree(n);
+    std::queue<Node *> qu;
+    std::queue<int> levels;
+    Node* root = n;
+    qu.push(n);
+    levels.push(1);
+
+    while(!qu.empty()) {
+        //std::cout << "Node: " << n->value << "  / level: " << level << std::endl;
+
+        // Check if that node is the bottommost, rightmost one.
+        if(level == maxLevel) {
+            //std::cout << "Node: " << n->value << "  / parent: " << n->parent->value <<  "  / level: " << level << std::endl;
+            int maximumValue = n->value;
+
+            if(n->parent->right != nullptr && n->parent->right->value == maximumValue) {
+                n->parent->right = nullptr;
+            } else if(n->parent->left->value == maximumValue) {
+                n->parent->left = nullptr;
+            }
+
+            root->value = maximumValue;
+            BubbleSortDownMaximum(root);
+            return returnValue;
+        }
+
+        // BFS - Iterate from right to left.
+        if(n->right != nullptr) {
+            qu.push(n->right);
+            levels.push(level+1);
+            //std::cout << "PUSH Node: " << n->right->value << "  / level: " << level+1 << std::endl;
+        }
+
+        if(n->left != nullptr) {
+            qu.push(n->left);
+            levels.push(level+1);
+            //std::cout << "PUSH Node: " << n->left->value << "  / level: " << level+1 << std::endl;
+        }
+
+        qu.pop();
+        n = qu.front(); 
+
+        levels.pop();
+        level = levels.front();
+    }
+
+    return returnValue;
 }
 
 int main()
@@ -209,6 +285,13 @@ int main()
     PrintBinaryTree(n);
 
     Insert(n, 2);
+
+    PrintBinaryTree(n);
+
+    std::cout << "Min value: " << ExtractMin(n) << std::endl;
+
+    PrintBinaryTree(n);
+
 
     return 0;
 }
