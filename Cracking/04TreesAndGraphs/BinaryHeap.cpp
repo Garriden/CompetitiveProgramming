@@ -1,9 +1,11 @@
+#ifndef BINARY_HEAP_H
+#define BINARY_HEAP_H
+
 #include "Node.hpp"
 #include <iostream>
 #include <queue>
-#include <bitset>
 
-// g++ BinaryHeap.cpp Node.cpp -o hola
+// g++ BinaryHeap.cpp Node.cpp UtilsNode.cpp -o hola
 
 /*
         4
@@ -12,92 +14,6 @@
   /   \     /
 55    99  87
 */
-
-int GetMaxLevelBFS(Node* n) {
-    int maxLevel = 1;
-    int level = 1;
-    std::queue<Node *> qu;
-    std::queue<int> levels;
-    qu.push(n);
-    levels.push(1);
-
-    while(!qu.empty()) {
-        //std::cout << "Node: " << n->value << "  / level: " << level << std::endl;
-        
-        if(level > maxLevel) {
-            maxLevel = level;
-        }
-
-        if(n->left != nullptr) {
-            qu.push(n->left);
-            levels.push(level+1);
-            //std::cout << "PUSH Node: " << n->left->value << "  / level: " << level+1 << std::endl;
-        }
-
-        if(n->right != nullptr) {
-            qu.push(n->right);
-            levels.push(level+1);
-            //std::cout << "PUSH Node: " << n->right->value << "  / level: " << level+1 << std::endl;
-        }
-
-        qu.pop();
-        n = qu.front(); 
-
-        levels.pop();
-        level = levels.front();
-    }
-
-    return maxLevel;
-}
-
-//        1
-//      /    
-//    2        3
-void PrintBinaryTree(Node* n)
-{
-    int maxLevel = GetMaxLevelBFS(n);
-    int level = 1;
-    int levelBefore = 1;
-    std::queue<Node *> qu;
-    std::queue<int> levels;
-    qu.push(n);
-    levels.push(1);
-
-    while(!qu.empty()) {
-        //std::cout << "Node: " << n->value << "  / level: " << level  << "  / levelBefore: " << levelBefore << std::endl;
-
-        if(levelBefore != level) {
-            std:: cout << std:: endl;
-
-            //for(int ii = level-1; ii < maxLevel; ++ii) {
-            //    std::cout << "    ";
-            //} std::cout << "  /     | ";
-            std:: cout << std:: endl;
-        }
-
-        for(int ii = level; ii <= maxLevel; ++ii) {
-            std::cout << "    ";
-        } std::cout << n->value;
-
-        if(n->left != nullptr) {
-            qu.push(n->left);
-            levels.push(level+1);
-        }
-
-        if(n->right != nullptr) {
-            qu.push(n->right);
-            levels.push(level+1);
-        }
-
-        qu.pop();
-        n = qu.front(); 
-
-        levelBefore = level;
-        levels.pop();
-        level = levels.front();
-    }
-    std:: cout << std:: endl;
-}
 
 void BubbleSortDownMaximum(Node* n)
 {
@@ -144,7 +60,7 @@ void BubbleSortUpMinimum(Node* newLeaf)
  */
 void Insert(Node* n, int value)
 {
-    int maxLevel = GetMaxLevelBFS(n);
+    int maxLevel = Node::GetMaxLevelBFS(n);
     int level = 1;
 
     std::queue<Node *> qu;
@@ -209,7 +125,7 @@ int ExtractMin(Node* n)
 {
     int returnValue = n->value;
     
-    int maxLevel = GetMaxLevelBFS(n);
+    int maxLevel = Node::GetMaxLevelBFS(n);
     int level = 1;
 
     std::queue<Node *> qu;
@@ -282,16 +198,18 @@ int main()
     n->right->left->parent = n->right;
     //n->right->right = new Node(88);
 
-    PrintBinaryTree(n);
+    Node::PrintBinaryTree(n);
 
     Insert(n, 2);
 
-    PrintBinaryTree(n);
+    Node::PrintBinaryTree(n);
 
     std::cout << "Min value: " << ExtractMin(n) << std::endl;
 
-    PrintBinaryTree(n);
+    Node::PrintBinaryTree(n);
 
 
     return 0;
 }
+
+#endif
