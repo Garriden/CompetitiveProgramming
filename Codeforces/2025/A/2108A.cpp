@@ -1,9 +1,10 @@
 //https://codeforces.com/contest/2108/problem/A
 // Div. 2
+// 500
 
 //g++ -o a a.cpp
 
-// Combunatorics
+// Combinatorics
 // Number theory
 // Math
 // Greedy
