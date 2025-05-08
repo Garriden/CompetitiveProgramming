@@ -5,7 +5,7 @@
 // Math trick: Note that f(a) is the number of distinct numbers in the array.
 // The map trick was OK, tourist did the same.
 // OK, So similar to last version. Codeforces is quite titafluixa.
-//    - The freq vector is an int instead of pari<int,int>
+//    - The freq vector is an int instead of pair<int,int>
 //    - cin >> a instead of inserting into a vector.
 
 
