@@ -10,11 +10,12 @@
 // Sort + Two Pointers: Max - min. Doesn't work properly.
 // Time complexity: O(n *log(n))
 
-// Sort + Two Pointers: Switch every pair and will satisfy a peak.
+// Sort + iterate: Switch every pair and will satisfy a peak.
 // Time complexity: O(n *log(n))
 
 // Exists an algorithm without sorting that accomplish O(n).
 // Do the same swap but without Ordering the vector.
+// Comparing all three values and jumping two iterations.
 
 void MinMax(std::vector<int> &v)
 {
@@ -45,10 +46,31 @@ void Switch(std::vector<int> &v)
     } std::cout << std::endl;
 }
 
+void SwitchUnsorted(std::vector<int>& v) {
+    for(int ii = 1; ii < v.size() - 1; ii += 2) {
+        int biggestIndex = ii;
+
+        if(v[ii - 1] > v[biggestIndex]) {
+            biggestIndex = ii - 1;
+        } else if(v[ii + 1] > v[biggestIndex]) {
+            biggestIndex = ii + 1;
+        }
+
+        // Swap.
+        int aux = v[ii];
+        v[ii] = v[biggestIndex];
+        v[biggestIndex] = aux;
+    }
+
+    for(int ii = 0; ii < v.size(); ++ii) {
+        std::cout << v[ii];
+    } std::cout << std::endl;
+}
+
 int main()
 {
     std::vector<int> v{5, 3, 1, 2, 3};
-    Switch(v);
+    SwitchUnsorted(v);
 
     return 0;
 }
