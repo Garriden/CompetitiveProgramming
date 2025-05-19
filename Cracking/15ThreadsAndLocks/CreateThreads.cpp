@@ -1,14 +1,10 @@
 #include <iostream>
 #include <cstdint>
 #include <string.h>
-#include <algorithm>
-#include <vector>
-#include <map>
-
-// g++ -std=c++20 CreateThreads.cpp -o hola
-#include <iostream>
 #include <thread>
 #include <chrono>
+
+// g++ -std=c++20 CreateThreads.cpp -o hola
 
 void task(int id, int sleep_duration_ms) {
     std::cout << "Thread " << id << " starting..." << std::endl;
