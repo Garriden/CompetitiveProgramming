@@ -26,6 +26,7 @@ int BinarySearch(std::vector<int> &v, int x)
 
     return -1;
 }
+
 int main()
 {
     int n = 10;
