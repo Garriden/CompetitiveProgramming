@@ -4,7 +4,7 @@
 #include <optional>
 #include <iostream>
 
-// g++ -std=c++17 0207CallCenter.cpp Respondent.cpp Manager.cpp -o hola
+// g++ -std=c++17 0207CallCenter.cpp CallCenter.cpp Respondent.cpp Manager.cpp -o hola
 
 int main()
 {
