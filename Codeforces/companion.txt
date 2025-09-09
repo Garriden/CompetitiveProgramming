@@ -1,0 +1,11 @@
+- WSL terminal.
+
+sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/sourav739397/Competitive-Programming-Automation/main/install.sh)"
+
+cprun --parse here
+
+cprun --cp a.cpp
+
+cprun --cp -d your_solution.cpp
+
+cprun -a    // add new tests.
